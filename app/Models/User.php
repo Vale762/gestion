@@ -23,6 +23,16 @@ class User extends Authenticatable
         'password',
     ];
 
+       public function tipo_usuario()
+     {
+        return $this->belongsTo('App\Models\tipousuarios');
+     }
+     
+     public function invernadero()
+     {
+        return $this->belongsTo('App\Models\invernadero');
+     }
+
     /**
      * The attributes that should be hidden for serialization.
      *

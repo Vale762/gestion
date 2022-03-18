@@ -3,7 +3,11 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-
+use App\Models\tipousuario;
+use App\Models\invernadero;
+use App\Models\User;
+use App\Models\temperatura;
+use App\Models\sensores;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -13,6 +17,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+    
+        tipousuario::factory(5)->create();
+        invernadero::factory(5)->create();
+        User::factory(5)->create();
+        temperatura::factory(5)->create();
+        sensores::factory(5)->create();
     }
 }
