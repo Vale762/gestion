@@ -25,8 +25,8 @@ class UserFactory extends Factory
 
             //Foreign keys
             
-            'invernadero_id' => invernadero::inRandomOrder()->first(),
-            'tipousuario_id' => tipousuario::inRandomOrder()->first(),
+            // 'invernadero_id' => invernadero::inRandomOrder()->first(),
+            // 'tipousuario_id' => tipousuario::inRandomOrder()->first(),
         ];
     }
 

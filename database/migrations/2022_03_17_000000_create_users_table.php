@@ -22,13 +22,13 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
 
-          //llave foranea
-          $table->unsignedBigInteger('invernadero_id');           
-          $table->foreign('invernadero_id')->references('id')->on('invernaderos');
+        //   //llave foranea
+        //   $table->unsignedBigInteger('invernadero_id');           
+        //   $table->foreign('invernadero_id')->references('id')->on('invernaderos');
 
-            //llave foranea
-            $table->unsignedBigInteger('tipousuario_id');          
-            $table->foreign('tipousuario_id')->references('id')->on('tipousuarios');
+        //     //llave foranea
+        //     $table->unsignedBigInteger('tipousuario_id');          
+        //     $table->foreign('tipousuario_id')->references('id')->on('tipousuarios');
         });
     }
 
