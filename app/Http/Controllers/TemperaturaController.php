@@ -5,82 +5,46 @@ namespace App\Http\Controllers;
 use App\Models\temperatura;
 use App\Http\Requests\StoretemperaturaRequest;
 use App\Http\Requests\UpdatetemperaturaRequest;
+use Illuminate\Http\Request;
 
 class TemperaturaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+    public function temperatura(){
+        $temp = temperatura::all();
+        return $temp;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+     
+    public function registros(Request $request)
+        
     {
-        //
+        $temp = new temperatura();
+        $temp->temperatura = $request->temperatura;
+        $temp->fecha = $request->fecha;
+        $temp->invernadero_id= $request->invernadero_id;
+        return response()->json($temp->save(), 200);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoretemperaturaRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoretemperaturaRequest $request)
+    
+
+    public function actualizaciones(Request $request)
     {
-        //
+
+        $temp = temperatura::findOrFail($request->id);
+        $temp->temperatura = $request->temperatura;
+        $temp->fecha = $request->fecha;
+        $temp->invernadero_id= $request->invernadero_id;
+        return response()->json($temp->save(), 200);
+       
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\temperatura  $temperatura
-     * @return \Illuminate\Http\Response
-     */
-    public function show(temperatura $temperatura)
+    public function eliminaciones(Request $request)
     {
-        //
+        $temp = temperatura::destroy($request->id);
+        return response()->json($temp, 200);
+        
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\temperatura  $temperatura
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(temperatura $temperatura)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdatetemperaturaRequest  $request
-     * @param  \App\Models\temperatura  $temperatura
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdatetemperaturaRequest $request, temperatura $temperatura)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\temperatura  $temperatura
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(temperatura $temperatura)
-    {
-        //
-    }
 }
+

@@ -2,85 +2,56 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Models\invernadero;
 use App\Http\Requests\StoreinvernaderoRequest;
 use App\Http\Requests\UpdateinvernaderoRequest;
 
+
 class InvernaderoController extends Controller
+
+
+//Funcion para mandar a traer cada uno de los campos
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+
+    public function invernadero()
+
     {
-        //
+    $invernadero = invernadero::all();
+    return $invernadero;
+
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    
+    public function store(Request $request)
+        
     {
-        //
+        $invernadero = new invernadero();
+        $invernadero->descripcion = $request->descripcion;
+        $invernadero->seccion = $request->seccion;
+        return response()->json($invernadero->save(), 200);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreinvernaderoRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreinvernaderoRequest $request)
+    public function update(Request $request)
     {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\invernadero  $invernadero
-     * @return \Illuminate\Http\Response
-     */
-    public function show(invernadero $invernadero)
-    {
-        //
-    }
+        $invernadero = invernadero::findOrFail($request->id);
+        $invernadero->descripcion = $request->descripcion;
+        $invernadero->seccion = $request->seccion;
+        return response()->json($invernadero->save(), 200);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\invernadero  $invernadero
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(invernadero $invernadero)
-    {
-        //
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateinvernaderoRequest  $request
-     * @param  \App\Models\invernadero  $invernadero
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateinvernaderoRequest $request, invernadero $invernadero)
+   
+    public function destroy(Request $request)
     {
-        //
+        $invernadero = invernadero::destroy($request->id);
+        return response()->json($invernadero, 200);
+        
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\invernadero  $invernadero
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(invernadero $invernadero)
-    {
-        //
-    }
+      
+    
+   
 }
+
+   
+
