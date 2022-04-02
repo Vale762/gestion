@@ -2,10 +2,10 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\API\RegisterController;
+use App\Http\Controllers\Api\RegisterController;
+use App\Http\Controllers\Api\InvernaderoController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\InvernaderoController;
-use App\Http\Controllers\TemperaturaController;
+use App\Http\Controllers\Api\TemperaturaController;
 
 //laravel passport
 Route::post('register', [RegisterController::class, 'register']);
@@ -19,17 +19,19 @@ Route::get('/eliminar/{id}', [UserController::class, 'eliminar']);
 
 //Creacion invernaderos,actualizacion y eliminacion mediante InvernaderoController
 
-Route::get('invernadero', [InvernaderoController::class, 'invernadero']);
-Route::post('/store', [InvernaderoController::class, 'store']);  //guardar
-Route::put('/update/{id}', [InvernaderoController::class, 'update']); //actualizar
-Route::get('/destroy/{id}', [InvernaderoController::class, 'destroy']); //eliminar
+Route::get('invernaderos', [InvernaderoController::class, 'index']);
+Route::post('/invernaderos/crear', [InvernaderoController::class, 'store']);  //guardar
+Route::put('/invernaderos/actualizar/{id}', [InvernaderoController::class, 'update']); //actualizar
+Route::get('/invernaderos/detalle/{id}',[InvernaderoController::class, 'show']); //Invernadero específico
+Route::delete('/invernaderos/eliminar/{id}', [InvernaderoController::class, 'destroy']); //eliminar
 
 //Creacion temperaturas,actualizacion y eliminacion mediante TemperaturaController
 
-Route::get('temperatura', [TemperaturaController::class, 'temperatura']);
-Route::post('/registros', [TemperaturaController::class, 'registros']);  //guardar
-Route::put('/actualizaciones/{id}', [TemperaturaController::class, 'actualizaciones']); //actualizar
-Route::get('/eliminaciones/{id}', [TemperaturaController::class, 'eliminaciones']); //eliminar
+Route::get('temperatura', [TemperaturaController::class, 'index']);
+Route::post('/temperatura/registros', [TemperaturaController::class, 'store']);  //guardar
+Route::put('/temperatura/actualizaciones/{id}', [TemperaturaController::class, 'update']); //actualizar
+Route::get('/temperatura/detalle/{id}',[InvernaderoController::class, 'show']); //Invernadero específico
+Route::delete('/temperatura/eliminaciones/{id}', [TemperaturaController::class, 'destroy']); //eliminar
 
 //----------------------------------------------------------------------------------//
 

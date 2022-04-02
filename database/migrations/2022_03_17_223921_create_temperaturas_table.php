@@ -17,10 +17,11 @@ class CreateTemperaturasTable extends Migration
             $table->id();
             $table->float("temperatura");
             $table->date("fecha");
-            $table->timestamps();
+          
           //llave foranea
           $table->unsignedBigInteger('invernadero_id');          
           $table->foreign('invernadero_id')->references('id')->on('invernaderos');
+          $table->timestamps();
         });
     }
 
